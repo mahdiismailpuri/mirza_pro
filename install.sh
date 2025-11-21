@@ -65,8 +65,8 @@ self_update_script
 # Check SSL certificate status and days remaining
 check_ssl_status() {
     # First get domain from config file
-    if [ -f "/var/www/html/mirzabotconfig/config.php" ]; then
-        domain=$(grep '^\$domainhosts' "/var/www/html/mirzabotconfig/config.php" | cut -d"'" -f2 | cut -d'/' -f1)
+    if [ -f "/var/www/html/mirzaprobotconfig/config.php" ]; then
+        domain=$(grep '^\$domainhosts' "/var/www/html/mirzaprobotconfig/config.php" | cut -d"'" -f2 | cut -d'/' -f1)
 
         if [ -n "$domain" ] && [ -f "/etc/letsencrypt/live/$domain/cert.pem" ]; then
             expiry_date=$(openssl x509 -enddate -noout -in "/etc/letsencrypt/live/$domain/cert.pem" | cut -d= -f2)
@@ -88,7 +88,7 @@ check_ssl_status() {
 
 # Check bot installation status
 check_bot_status() {
-    if [ -f "/var/www/html/mirzabotconfig/config.php" ]; then
+    if [ -f "/var/www/html/mirzaprobotconfig/config.php" ]; then
         echo -e "\033[32m✅ Bot is installed\033[0m"
         check_ssl_status
     else
@@ -112,9 +112,13 @@ function show_logo() {
     echo "================================================================================="
     echo -e "\033[0m"
     echo ""
-    echo -e "\033[1;36mVersion:\033[0m \033[33m0.1 (Pro)\033[0m"
-    echo -e "\033[1;36mTelegram Channel:\033[0m \033[34mhttps://t.me/mirzapanel\033[0m"
-    echo -e "\033[1;36mTelegram Group:  \033[0m \033[34mhttps://t.me/mirzapanelgroup\033[0m"
+    echo -e "\033[1;36m+-------------------+---------------------------------------------------+\033[0m"
+    echo -e "\033[1;36m| Version           |\033[0m \033[33m0.2 (Pro)\033[0m"
+    echo -e "\033[1;36m+-------------------+---------------------------------------------------+\033[0m"
+    echo -e "\033[1;36m| Telegram Channel  |\033[0m \033[34mhttps://t.me/mirzapanel\033[0m"
+    echo -e "\033[1;36m+-------------------+---------------------------------------------------+\033[0m"
+    echo -e "\033[1;36m| Telegram Group    |\033[0m \033[34mhttps://t.me/mirzapanelgroup\033[0m"
+    echo -e "\033[1;36m+-------------------+---------------------------------------------------+\033[0m"
     echo ""
     echo -e "\033[1;36mInstallation Status:\033[0m"
     check_bot_status
@@ -125,7 +129,7 @@ function show_logo() {
 # Display Menu
 function show_menu() {
     show_logo
-    echo -e "\033[1;36m1)\033[0m Install Mirza Bot"
+    echo -e "\033[1;36m1)\033[0m Install MirzaPro Bot"
     # echo -e "\033[1;36m2)\033[0m Update Mirza Bot"
     # echo -e "\033[1;36m3)\033[0m Remove Mirza Bot"
     # echo -e "\033[1;36m4)\033[0m Export Database"
